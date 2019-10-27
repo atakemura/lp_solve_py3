@@ -85,8 +85,8 @@
 #endif
 
 #ifndef FALSE
-  #define FALSE        0
-  #define TRUE         1
+  #define FFALSE        0
+  #define FTRUE         1
 #endif
 
 #ifndef DEF_STRBUFSIZE

@@ -13,7 +13,7 @@
 /* ************************************************************************ */
 /* Initialize BLAS interfacing routines                                     */
 /* ************************************************************************ */
-MYBOOL mustinitBLAS = TRUE;
+MYBOOL mustinitBLAS = FTRUE;
 #ifdef WIN32
   HINSTANCE hBLAS = NULL;
 #else
@@ -42,7 +42,7 @@ void init_BLAS(void)
 {
   if(mustinitBLAS) {
     load_BLAS(NULL);
-    mustinitBLAS = FALSE;
+    mustinitBLAS = FFALSE;
   }
 }
 
@@ -51,13 +51,13 @@ MYBOOL is_nativeBLAS(void)
 #ifdef LoadableBlasLib
   return( (MYBOOL) (hBLAS == NULL) );
 #else
-  return( TRUE );
+  return( FTRUE );
 #endif
 }
 
 MYBOOL load_BLAS(char *libname)
 {
-  MYBOOL result = TRUE;
+  MYBOOL result = FTRUE;
 
 #ifdef LoadableBlasLib
   if(hBLAS != NULL) {
@@ -72,7 +72,7 @@ MYBOOL load_BLAS(char *libname)
 
   if(libname == NULL) {
     if(!mustinitBLAS && is_nativeBLAS())
-      return( FALSE );
+      return( FFALSE );
     BLAS_dscal = my_dscal;
     BLAS_dcopy = my_dcopy;
     BLAS_daxpy = my_daxpy;
@@ -82,7 +82,7 @@ MYBOOL load_BLAS(char *libname)
     BLAS_dload = my_dload;
     BLAS_dnormi = my_dnormi;
     if(mustinitBLAS)
-      mustinitBLAS = FALSE;
+      mustinitBLAS = FFALSE;
   }
   else {
 #ifdef LoadableBlasLib
@@ -151,7 +151,7 @@ MYBOOL load_BLAS(char *libname)
         (BLAS_dnormi == NULL))
       ) {
       load_BLAS(NULL);
-      result = FALSE;
+      result = FFALSE;
     }
   }
   return( result );

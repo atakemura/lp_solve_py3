@@ -116,7 +116,7 @@ MYBOOL so_stdname(char *stdname, char *descname, int buflen)
   char *ptr;
 
   if((descname == NULL) || (stdname == NULL) || (((int) strlen(descname)) >= buflen - 6))
-    return( FALSE );
+    return( FFALSE );
 
   strcpy(stdname, descname);
   if((ptr = strrchr(descname, '/')) == NULL)
@@ -129,7 +129,7 @@ MYBOOL so_stdname(char *stdname, char *descname, int buflen)
   strcat(stdname, ptr);
   if(strcmp(stdname + strlen(stdname) - 3, ".so"))
     strcat(stdname, ".so");
-  return( TRUE );
+  return( FTRUE );
 }
 
 /* Return the greatest common divisor of a and b, or -1 if it is
@@ -729,7 +729,7 @@ MYBOOL QS_execute(UNIONTYPE QSORTrec a[], int count, findCompare_func findCompar
 Finish:
   if(nswaps != NULL)
     *nswaps = iswaps;
-  return( TRUE );
+  return( FTRUE );
 }
 
 
@@ -982,11 +982,11 @@ MYBOOL fileSearchPath( char *envvar, char *searchfile, char *foundpath )
 
    _searchenv( searchfile, envvar, pathbuffer );
    if(pathbuffer[0] == '\0')
-     return( FALSE );
+     return( FFALSE );
    else {
      if(foundpath != NULL)
        strcpy(foundpath, pathbuffer);
-     return( TRUE );
+     return( FTRUE );
    }
 }
 #endif
