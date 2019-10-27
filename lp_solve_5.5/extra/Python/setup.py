@@ -1,21 +1,25 @@
-from distutils.core import setup, Extension
-from os import getenv
 import sys
 import os
+
+from distutils.core import setup, Extension
+from distutils import sysconfig
+from os import getenv
+
+
 p = sys.prefix
 NUMPYPATH = '.'
 if os.path.isdir(p + '/include/numpy'):
   NUMPY = 'NUMPY'
-elif os.path.isdir(p + '/Lib/site-packages/numpy/core/include/numpy'):
+elif os.path.isdir(sysconfig.get_python_lib() + '/numpy/core/include/numpy'):
   NUMPY = 'NUMPY'
-  NUMPYPATH = p + '/Lib/site-packages/numpy/core/include'
+  NUMPYPATH = sysconfig.get_python_lib() + '/numpy/core/include'
 else:
   NUMPY = 'NONUMPY'
-print 'numpy: ' + NUMPY
+print('numpy: ' + NUMPY)
 windir = getenv('windir')
 if windir == None:
   WIN32 = 'NOWIN32'
-  LPSOLVE55 = '../../lpsolve55/bin/ux32'
+  LPSOLVE55 = '../../lpsolve55/bin/ux64'
 else:
   WIN32 = 'WIN32'
   LPSOLVE55 = '../../lpsolve55/bin/win32'
